@@ -1,2 +1,2 @@
-# medium
-contains code to be published in Medium
+# Medium
+Contains code to be published in the writeups
