@@ -13,12 +13,12 @@ def task(x):
     return prediction
 
 
-#sameple inputs for prediction. Consider the length ogf list is 50.
+#sameple inputs for prediction. Consider the length of the list is 50.
 values=["Alexa switch on the tv","Hey alexa, play a song","Alexa call Anna"," ", " "]
 prediction=[]
-with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
     #submit returns a future object. It is a acknowledgement about exectution of tasks in multithread
     futures=[executor.submit(task,value) for value in values]
     #as_completed is used to fetch the results as when each input is completed.
-    for future in as_completed(futures):
+    for future in concurrent.futures.as_completed(futures):
         prediction.append(future.results())
